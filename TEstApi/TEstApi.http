@@ -1,0 +1,177 @@
+@TEstApi_HostAddress = http://localhost:5285/api
+
+GET {{TEstApi_HostAddress}}/category
+Accept: application/json
+
+###
+
+GET {{TEstApi_HostAddress}}/category/2
+Accept: application/json
+
+###
+
+## Category Endpoints
+POST {{TEstApi_HostAddress}}/category
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Fruits"
+}
+
+###
+
+PATCH {{TEstApi_HostAddress}}/category/1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Fruits and Vegetables"
+}
+
+###
+
+DELETE {{TEstApi_HostAddress}}/category/1
+Accept: application/json
+
+### PRODUCT ENDPOINTS
+
+GET {{TEstApi_HostAddress}}/Product
+Accept: application/json
+
+###
+
+GET {{TEstApi_HostAddress}}/Product/1
+Accept: application/json
+
+###
+
+# @name CreateProduct
+POST {{TEstApi_HostAddress}}/Product
+Accept: application/json
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="name"
+
+New Product with Image
+--WebAppBoundary
+Content-Disposition: form-data; name="description"
+
+Description for product with image
+--WebAppBoundary
+Content-Disposition: form-data; name="price"
+
+150.50
+--WebAppBoundary
+Content-Disposition: form-data; name="sku"
+
+IMG-SKU-001
+--WebAppBoundary
+Content-Disposition: form-data; name="stock"
+
+25
+--WebAppBoundary
+Content-Disposition: form-data; name="categoryId"
+
+1
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="product.jpg"
+Content-Type: image/jpeg
+
+< ./product-sample.jpg
+--WebAppBoundary--
+
+###
+
+# @name UpdateProduct
+PATCH {{TEstApi_HostAddress}}/Product/1
+Accept: application/json
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="name"
+
+Updated Product with Image
+--WebAppBoundary
+Content-Disposition: form-data; name="description"
+
+Updated description
+--WebAppBoundary
+Content-Disposition: form-data; name="price"
+
+120.00
+--WebAppBoundary
+Content-Disposition: form-data; name="sku"
+
+IMG-SKU-001-UPD
+--WebAppBoundary
+Content-Disposition: form-data; name="stock"
+
+15
+--WebAppBoundary
+Content-Disposition: form-data; name="categoryId"
+
+1
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="updated-product.jpg"
+Content-Type: image/jpeg
+
+< ./product-sample.jpg
+--WebAppBoundary--
+
+###
+
+DELETE {{TEstApi_HostAddress}}/Product/1
+Accept: application/json
+
+###
+
+GET {{TEstApi_HostAddress}}/Product/GetProductsForCategory/1
+Accept: application/json
+
+###
+
+GET {{TEstApi_HostAddress}}/Product/Search?searchTerm=product
+Accept: application/json
+
+###
+
+POST {{TEstApi_HostAddress}}/Product/BuyProduct?name=New Product&quantity=2
+Accept: application/json
+
+### USER ENDPOINTS
+
+GET {{TEstApi_HostAddress}}/User
+Accept: application/json
+
+###
+
+GET {{TEstApi_HostAddress}}/User/1
+Accept: application/json
+
+###
+
+POST {{TEstApi_HostAddress}}/User/Register
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "newuser",
+    "password": "Password123$$232",
+    "role": "admin",
+    "name": "New User"
+}
+
+###
+
+POST {{TEstApi_HostAddress}}/User/Login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "newuser",
+    "password": "Password123$$232"
+}
+
+
