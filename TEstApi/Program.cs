@@ -14,6 +14,9 @@ using TEstApi.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Habilitar comportamiento legado de timestamps para PostgreSQL
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 // Limpiar el mapeo de claims para que use los nombres cortos (como "role") directamente
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
