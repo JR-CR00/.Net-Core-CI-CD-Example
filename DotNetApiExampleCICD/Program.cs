@@ -119,7 +119,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 
-app.UseHttpsRedirection();
+//For production, it's recommended to use HTTPS redirection and ensure the app is served over HTTPS.
+//app.UseHttpsRedirection();
 
 app.UseCors("AllowSpecificOrigin");
 

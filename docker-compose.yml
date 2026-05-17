@@ -1,0 +1,18 @@
+services:
+  api:
+    image: $DOCKER_CONTAINER:$NEW_VERSION
+    container_name: miapi
+    volumes:
+      - ./wwwroot:/app/wwwroot
+    environment:
+      - ASPNETCORE_ENVIRONMENT=$ASPNETCORE_ENVIRONMENT
+      - ConnectionStrings__DefaultConnection=${CONNECTION_STRING}
+    networks:
+      - proxy-network
+    restart: unless-stopped
+    expose:
+      - "8080"
+
+networks:
+  proxy-network:
+    external: true
