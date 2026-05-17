@@ -155,6 +155,10 @@ namespace TEstApi.Controllers
             }
 
             var createdProduct = _productRepository.GetProduct(product.Id);
+            if (createdProduct == null)
+            {
+                return NotFound();
+            }
             var productDto = _mapper.Map<ProductDto>(createdProduct);
 
             return CreatedAtRoute("GetProduct", new { id = product.Id }, productDto);

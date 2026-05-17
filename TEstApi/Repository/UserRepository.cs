@@ -148,6 +148,10 @@ public class UserRepository : IUserRepository
         await _userManager.AddToRoleAsync(user, userRole);
 
         var createdUser = await _db.ApplicationUsers.FirstOrDefaultAsync(u => u.UserName == request.Username);
+        if (createdUser == null)
+        {
+            throw new InvalidOperationException("User registration failed: User not found after creation.");
+        }
 
         return _mapper.Map<UserDataDto>(createdUser);
 

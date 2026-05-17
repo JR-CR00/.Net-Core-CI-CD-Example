@@ -78,7 +78,7 @@ builder.Services.AddAuthentication(options =>
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration.GetValue<string>("ApiSettings:SecretKey"))),
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration.GetValue<string>("ApiSettings:SecretKey") ?? "SecretKeyDefault_ReplaceInProduction")),
         ValidateIssuer = false,
         ValidateAudience = false,
         // Al haber limpiado el ClaimTypeMap, esto asegura que busque "role" tal cual viene en el JWT

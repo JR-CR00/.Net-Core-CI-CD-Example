@@ -20,11 +20,11 @@ public static class DataSeeder
         if (!appContext.Categories.Any())
         {
             appContext.Categories.AddRange(
-              new Category { Name = "Ropa y accesorios", CreatedAt = DateTime.Now },
-              new Category { Name = "Electrónicos", CreatedAt = DateTime.Now },
-              new Category { Name = "Deportes", CreatedAt = DateTime.Now },
-              new Category { Name = "Hogar", CreatedAt = DateTime.Now },
-              new Category { Name = "Libros", CreatedAt = DateTime.Now }
+              new Category { Name = "Ropa y accesorios", CreatedAt = DateTime.UtcNow },
+              new Category { Name = "Electrónicos", CreatedAt = DateTime.UtcNow },
+              new Category { Name = "Deportes", CreatedAt = DateTime.UtcNow },
+              new Category { Name = "Hogar", CreatedAt = DateTime.UtcNow },
+              new Category { Name = "Libros", CreatedAt = DateTime.UtcNow }
             );
         }
         // Seeding de Usuario Administrador
@@ -80,7 +80,7 @@ public static class DataSeeder
                   CategoryId = 1,
                   Category = appContext.Categories.Find(1)!,
                   ImgUrl = "https://via.placeholder.com/300x300/FF0000/FFFFFF?text=Camiseta",
-                  CreatedAt = DateTime.Now
+                  CreatedAt = DateTime.UtcNow
               },
               new Product
               {
@@ -92,7 +92,7 @@ public static class DataSeeder
                   CategoryId = 2,
                   Category = appContext.Categories.Find(2)!,
                   ImgUrl = "https://via.placeholder.com/300x300/0000FF/FFFFFF?text=Smartphone",
-                  CreatedAt = DateTime.Now
+                  CreatedAt = DateTime.UtcNow
               },
               new Product
               {
@@ -104,7 +104,7 @@ public static class DataSeeder
                   CategoryId = 3,
                   Category = appContext.Categories.Find(3)!,
                   ImgUrl = "https://via.placeholder.com/300x300/00FF00/FFFFFF?text=Pelota",
-                  CreatedAt = DateTime.Now
+                  CreatedAt = DateTime.UtcNow
               },
               new Product
               {
@@ -116,7 +116,7 @@ public static class DataSeeder
                   CategoryId = 4,
                   Category = appContext.Categories.Find(4)!,
                   ImgUrl = "https://via.placeholder.com/300x300/FFFF00/000000?text=Lampara",
-                  CreatedAt = DateTime.Now
+                  CreatedAt = DateTime.UtcNow
               },
               new Product
               {
@@ -128,7 +128,7 @@ public static class DataSeeder
                   CategoryId = 5,
                   Category = appContext.Categories.Find(5)!,
                   ImgUrl = "https://via.placeholder.com/300x300/800080/FFFFFF?text=Libro",
-                  CreatedAt = DateTime.Now
+                  CreatedAt = DateTime.UtcNow
               },
               new Product
               {
@@ -140,7 +140,7 @@ public static class DataSeeder
                   CategoryId = 1,
                   Category = appContext.Categories.Find(1)!,
                   ImgUrl = "https://via.placeholder.com/300x300/4169E1/FFFFFF?text=Jeans",
-                  CreatedAt = DateTime.Now
+                  CreatedAt = DateTime.UtcNow
               },
               new Product
               {
@@ -152,7 +152,7 @@ public static class DataSeeder
                   CategoryId = 2,
                   Category = appContext.Categories.Find(2)!,
                   ImgUrl = "https://via.placeholder.com/300x300/C0C0C0/000000?text=Tablet",
-                  CreatedAt = DateTime.Now
+                  CreatedAt = DateTime.UtcNow
               },
               new Product
               {
@@ -164,7 +164,7 @@ public static class DataSeeder
                   CategoryId = 3,
                   Category = appContext.Categories.Find(3)!,
                   ImgUrl = "https://via.placeholder.com/300x300/000000/FFFFFF?text=Zapatillas",
-                  CreatedAt = DateTime.Now
+                  CreatedAt = DateTime.UtcNow
               },
               new Product
               {
@@ -176,7 +176,7 @@ public static class DataSeeder
                   CategoryId = 4,
                   Category = appContext.Categories.Find(4)!,
                   ImgUrl = "https://via.placeholder.com/300x300/2F4F4F/FFFFFF?text=Cafetera",
-                  CreatedAt = DateTime.Now
+                  CreatedAt = DateTime.UtcNow
               },
               new Product
               {
@@ -188,7 +188,7 @@ public static class DataSeeder
                   CategoryId = 5,
                   Category = appContext.Categories.Find(5)!,
                   ImgUrl = "https://via.placeholder.com/300x300/008B8B/FFFFFF?text=C%23+Book",
-                  CreatedAt = DateTime.Now
+                  CreatedAt = DateTime.UtcNow
               },
               new Product
               {
@@ -200,7 +200,7 @@ public static class DataSeeder
                   CategoryId = 1,
                   Category = appContext.Categories.Find(1)!,
                   ImgUrl = "https://via.placeholder.com/300x300/000080/FFFFFF?text=Chaqueta",
-                  CreatedAt = DateTime.Now
+                  CreatedAt = DateTime.UtcNow
               },
               new Product
               {
@@ -212,7 +212,7 @@ public static class DataSeeder
                   CategoryId = 2,
                   Category = appContext.Categories.Find(2)!,
                   ImgUrl = "https://via.placeholder.com/300x300/1C1C1C/FFFFFF?text=Auriculares",
-                  CreatedAt = DateTime.Now
+                  CreatedAt = DateTime.UtcNow
               }
             );
         }
