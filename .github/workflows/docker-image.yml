@@ -93,7 +93,7 @@ jobs:
         ApiSettings__SecretKey: ${{ secrets.APP_SETTINGS_SECRET_KEY }}
       run: |
           mkdir -p /apps/dotnet-api
-          cp docker-compose.yml 
+          cp docker-compose.yml /apps/dotnet-api/docker-compose.yml
 
           cat > /apps/dotnet-api/.env <<EOF
           DOCKER_CONTAINER=$DOCKER_CONTAINER
