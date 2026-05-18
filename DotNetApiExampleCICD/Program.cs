@@ -126,8 +126,8 @@ app.MapControllers();
 app.UseResponseCaching();
 
 //Run migrations automatically on startup (use with caution in production)
-// if (app.Environment.IsProduction())
-// {
+if (app.Environment.IsProduction())
+{
     using var scope = app.Services.CreateScope();
 
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
@@ -135,5 +135,5 @@ app.UseResponseCaching();
     db.Database.Migrate();
 
     DataSeeder.Seed(db);
-// }
+}
 app.Run();
