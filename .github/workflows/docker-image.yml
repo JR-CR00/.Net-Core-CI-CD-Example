@@ -123,10 +123,6 @@ jobs:
     - name: Logout Docker
       run: docker logout
     
-    - name: Run Migrations
-      run: |
-          cd /apps/dotnet-api
-          docker compose exec dotnet-api dotnet ef database update --no-build --no-restore
     
  
     

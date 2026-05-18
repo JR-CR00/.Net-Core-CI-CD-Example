@@ -131,4 +131,12 @@ app.MapControllers();
 
 app.UseResponseCaching();
 
+//Run migrations automatically on startup (use with caution in production)
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    db.Database.Migrate();
+}
+
 app.Run();
