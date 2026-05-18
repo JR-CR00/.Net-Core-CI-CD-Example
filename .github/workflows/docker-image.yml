@@ -47,6 +47,8 @@ jobs:
         tag_prefix: "v"
         major_pattern: "major:"
         minor_pattern: "feat:"
+        version_format: "${major}.${minor}.${patch}-prerelease${increment}"  
+        bump_each_commit: true
 
     - name: Set Variables
       run: |
@@ -90,7 +92,7 @@ jobs:
 
     - name: Copy deployment files
       env:
-        ConnectionStrings__DefaultConnection: ${{ secrets.APP_SETTINGS_STRING_CONNECTION_FOR_TESTING }}
+        ConnectionStrings__DefaultConnection: ${{ secrets.APP_SETTINGS_STRING_CONNECTION }}
         ApiSettings__SecretKey: ${{ secrets.APP_SETTINGS_SECRET_KEY }}
         DOCKER_CONTAINER: ${{ secrets.DOCKER_CONTAINER }}
         NEW_VERSION: ${{needs.build.outputs.NEW_VERSION}}
