@@ -1,16 +1,25 @@
 services:
-  api:
-    image: $DOCKER_CONTAINER:$NEW_VERSION
+
+  dotnet-api:
+    image: ${DOCKER_CONTAINER}:${NEW_VERSION}
+
     container_name: miapi
+
     volumes:
       - ./wwwroot:/app/wwwroot
+
     environment:
-      - ASPNETCORE_ENVIRONMENT=$ASPNETCORE_ENVIRONMENT
-      - ConnectionStrings__DefaultConnection=${CONNECTION_STRING}
-      - SecretKey=${SECRET_KEY}
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+
+      ConnectionStrings__DefaultConnection: ${ConnectionStrings__DefaultConnection}
+
+      ApiSettings__SecretKey: ${ApiSettings__SecretKey}
+
     networks:
       - proxy-network
+
     restart: unless-stopped
+
     expose:
       - "8080"
 

@@ -71,5 +71,52 @@ jobs:
 
     - name: Docker Logout
       run: docker logout
+
+  deploy:
+    needs: build
+
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Login Docker
+      run : |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login \
+          -u "${{ secrets.DOCKER_USER }}" \
+          --password-stdin
+
+    - name: Copy deployment files
+      env:
+        ConnectionStrings__DefaultConnection: ${{ secrets.APP_SETTINGS_STRING_CONNECTION_FOR_TESTING }}
+        ApiSettings__SecretKey: ${{ secrets.APP_SETTINGS_SECRET_KEY }}
+      run: |
+          mkdir -p /apps/dotnet-api
+          cp docker-compose.yml 
+
+          cat > /apps/dotnet-api/.env <<EOF
+          DOCKER_CONTAINER=$DOCKER_CONTAINER
+          NEW_VERSION=$NEW_VERSION
+          ConnectionStrings__DefaultConnection=${ConnectionStrings__DefaultConnection}
+          ApiSettings__SecretKey=${ApiSettings__SecretKey}
+          ASPNETCORE_ENVIRONMENT=Production
+          EOF
+
+    - name: Pull Docker Image
+      run: |
+          cd /apps/dotnet-api
+          docker pull "$DOCKER_CONTAINER:$NEW_VERSION"
+          docker compose down && docker compose up -d
+
+    - name: Logout Docker
+      run: docker logout
+    
+    - name: Run Migrations
+      run: |
+          cd /apps/dotnet-api
+          docker compose exec dotnet-api dotnet ef database update --no-build --no-restore
+    
+ 
     
   
