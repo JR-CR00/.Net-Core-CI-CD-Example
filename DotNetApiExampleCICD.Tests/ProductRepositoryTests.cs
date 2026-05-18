@@ -21,9 +21,11 @@ namespace DotNetApiExampleCICD.Tests
 
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 
-            // Logs temporales para diagnosticar
+
             Console.WriteLine($"=== DEBUG ===");
-            Console.WriteLine($"ConnectionString: {connectionString}");
+            Console.WriteLine($"ConnectionString is null: {connectionString == null}");
+            Console.WriteLine($"ConnectionString is empty: {string.IsNullOrEmpty(connectionString)}");
+            Console.WriteLine($"ConnectionString value: '{connectionString}'");
             Console.WriteLine($"=============");
 
             if (!string.IsNullOrEmpty(connectionString))
@@ -34,7 +36,7 @@ namespace DotNetApiExampleCICD.Tests
             {
                 throw new InvalidOperationException("No connection string provided.");
             }
-
+            
             var databaseContext = new ApplicationDbContext(optionsBuilder.Options);
             databaseContext.Database.EnsureCreated();
             return databaseContext;
