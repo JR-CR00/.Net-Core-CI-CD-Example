@@ -23,13 +23,8 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 var dbConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-  options.UseNpgsql(dbConnectionString)
-  .UseSeeding((context, _) =>
-  {
-      var appContext = (ApplicationDbContext)context;
-      DataSeeder.Seed(appContext);
-  }
-));
+    options.UseNpgsql(dbConnectionString)
+);
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -107,8 +102,6 @@ builder.Services.AddResponseCaching(options =>
 });
 
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -125,6 +118,7 @@ app.UseStaticFiles();
 app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();
@@ -132,11 +126,14 @@ app.MapControllers();
 app.UseResponseCaching();
 
 //Run migrations automatically on startup (use with caution in production)
-using (var scope = app.Services.CreateScope())
+if (app.Environment.IsProduction())
 {
+    using var scope = app.Services.CreateScope();
+
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
     db.Database.Migrate();
-}
 
+    DataSeeder.Seed(db);
+}
 app.Run();

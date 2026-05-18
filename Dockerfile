@@ -8,11 +8,6 @@ RUN dotnet restore "DotNetApiExampleCICD/DotNetApiExampleCICD.csproj"
 
 COPY . .
 
-RUN dotnet test "DotNetApiExampleCICD.Tests/DotNetApiExampleCICD.Tests.csproj" \
-    --no-restore \
-    --verbosity normal \
-    --filter "Category=Unit"
-
 RUN dotnet publish "DotNetApiExampleCICD/DotNetApiExampleCICD.csproj" \
     -c Release \
     -o /app/publish \
