@@ -15,12 +15,23 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    # - name: Setup .NET
+    #   uses: actions/setup-dotnet@v4
+    #   with:
+    #     dotnet-version: '10.0.x'
+
+    - name: Restore Dependencies
+      run: dotnet restore
+
     - name: Run Tests
       run: |
         dotnet test "DotNetApiExampleCICD.Tests/DotNetApiExampleCICD.Tests.csproj" \
-          --verbosity normal
+          --verbosity detailed \
+          --no-restore
+
       env:
         ConnectionStrings__DefaultConnection: ${{ secrets.APP_SETTINGS_STRING_CONNECTION_FOR_TESTING }}
+
 
   build:
     needs: tests
