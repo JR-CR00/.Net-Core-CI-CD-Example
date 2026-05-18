@@ -19,7 +19,9 @@ namespace DotNetApiExampleCICD.Tests
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            
+
+            Console.WriteLine($"ConnectionString: {connectionString}");
+
             if (!string.IsNullOrEmpty(connectionString))
             {
                 optionsBuilder.UseNpgsql(connectionString);
