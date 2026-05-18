@@ -15,6 +15,7 @@ services:
 
     networks:
       - proxy-network
+      - db-network
 
     restart: unless-stopped
 
@@ -23,4 +24,6 @@ services:
 
 networks:
   proxy-network:
+    external: true
+  db-network:
     external: true

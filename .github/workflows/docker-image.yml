@@ -97,6 +97,7 @@ jobs:
       run: |
           mkdir -p /apps/dotnet-api
           cp docker-compose.yml /apps/dotnet-api/docker-compose.yml
+          rm -rf /apps/dotnet-api/.env
 
           cat > /apps/dotnet-api/.env <<EOF
           DOCKER_CONTAINER=$DOCKER_CONTAINER
