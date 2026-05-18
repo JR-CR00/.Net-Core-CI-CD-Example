@@ -107,10 +107,18 @@ jobs:
           EOF
 
     - name: Pull Docker Image
+      env:
+        DOCKER_CONTAINER: ${{ secrets.DOCKER_CONTAINER }}
+        NEW_VERSION: ${{needs.build.outputs.NEW_VERSION}}
       run: |
           cd /apps/dotnet-api
           docker pull "$DOCKER_CONTAINER:$NEW_VERSION"
-          docker compose down && docker compose up -d
+
+    - name: Down Docker Containers
+      run: |
+          cd /apps/dotnet-api
+          docker compose down || true
+          docker compose up -d
 
     - name: Logout Docker
       run: docker logout
