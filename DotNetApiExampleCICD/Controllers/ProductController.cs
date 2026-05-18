@@ -11,7 +11,7 @@ using DotNetApiExampleCICD.Models.Dto.Responses;
 
 namespace DotNetApiExampleCICD.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase

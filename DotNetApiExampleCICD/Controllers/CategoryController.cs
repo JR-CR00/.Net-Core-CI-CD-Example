@@ -9,7 +9,7 @@ using DotNetApiExampleCICD.Repository.IRepository;
 
 namespace DotNetApiExampleCICD.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiVersion("1.0")]
     [ApiVersion("2.0")]
