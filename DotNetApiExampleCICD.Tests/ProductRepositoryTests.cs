@@ -21,7 +21,10 @@ namespace DotNetApiExampleCICD.Tests
 
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 
+            // Logs temporales para diagnosticar
+            Console.WriteLine($"=== DEBUG ===");
             Console.WriteLine($"ConnectionString: {connectionString}");
+            Console.WriteLine($"=============");
 
             if (!string.IsNullOrEmpty(connectionString))
             {
@@ -29,8 +32,7 @@ namespace DotNetApiExampleCICD.Tests
             }
             else
             {
-                throw new InvalidOperationException("No connection string provided for testing. Please check your appsettings.Test.json configuration.");
-                //optionsBuilder.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString());
+                throw new InvalidOperationException("No connection string provided.");
             }
 
             var databaseContext = new ApplicationDbContext(optionsBuilder.Options);
