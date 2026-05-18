@@ -14,6 +14,7 @@ namespace DotNetApiExampleCICD.Tests
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.Test.json", optional: true)
+                .AddEnvironmentVariables()
                 .Build();
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
