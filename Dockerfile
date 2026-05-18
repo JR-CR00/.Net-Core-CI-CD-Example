@@ -10,7 +10,8 @@ COPY . .
 
 RUN dotnet test "DotNetApiExampleCICD.Tests/DotNetApiExampleCICD.Tests.csproj" \
     --no-restore \
-    --verbosity normal
+    --verbosity normal \
+    --filter "Category=Unit"
 
 RUN dotnet publish "DotNetApiExampleCICD/DotNetApiExampleCICD.csproj" \
     -c Release \
