@@ -28,6 +28,8 @@ jobs:
         dotnet test "DotNetApiExampleCICD.Tests/DotNetApiExampleCICD.Tests.csproj" \
           --no-restore \
           --verbosity normal 
+
+        echo $ConnectionStrings__DefaultConnection
       env:
         ConnectionStrings__DefaultConnection: ${{ secrets.APP_SETTINGS_STRING_CONNECTION_FOR_TESTING }}
 
