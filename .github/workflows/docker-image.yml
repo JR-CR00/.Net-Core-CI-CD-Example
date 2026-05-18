@@ -23,19 +23,11 @@ jobs:
     - name: Restore Dependencies
       run: dotnet restore
 
-    - name: Run Unit Tests
+    - name: Run Tests
       run: |
         dotnet test "DotNetApiExampleCICD.Tests/DotNetApiExampleCICD.Tests.csproj" \
           --no-restore \
-          --verbosity normal \
-          --filter "Category=Unit"
-
-    - name: Run Integration Tests
-      run: |
-        dotnet test "DotNetApiExampleCICD.Tests/DotNetApiExampleCICD.Tests.csproj" \
-          --no-restore \
-          --verbosity normal \
-          --filter "Category=Integration"
+          --verbosity normal 
       env:
         ConnectionStrings__DefaultConnection: ${{ secrets.APP_SETTINGS_STRING_CONNECTION_FOR_TESTING }}
 
