@@ -26,7 +26,8 @@ namespace DotNetApiExampleCICD.Tests
             }
             else
             {
-                optionsBuilder.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString());
+                throw new InvalidOperationException("No connection string provided for testing. Please check your appsettings.Test.json configuration.");
+                //optionsBuilder.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString());
             }
 
             var databaseContext = new ApplicationDbContext(optionsBuilder.Options);
