@@ -22,12 +22,6 @@ namespace DotNetApiExampleCICD.Tests
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 
 
-            Console.WriteLine($"=== DEBUG ===");
-            Console.WriteLine($"ConnectionString is null: {connectionString == null}");
-            Console.WriteLine($"ConnectionString is empty: {string.IsNullOrEmpty(connectionString)}");
-            Console.WriteLine($"ConnectionString value: '{connectionString}'");
-            Console.WriteLine($"=============");
-
             if (!string.IsNullOrEmpty(connectionString))
             {
                 optionsBuilder.UseNpgsql(connectionString);
