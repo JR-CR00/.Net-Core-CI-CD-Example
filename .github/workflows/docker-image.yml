@@ -32,7 +32,9 @@ jobs:
 
   build:
     needs: tests
-
+    outputs:
+      NEW_VERSION: ${{ steps.version.outputs.version }}
+      DOCKER_CONTAINER: ${{ secrets.DOCKER_CONTAINER }}
     runs-on: self-hosted
 
     steps:
@@ -91,6 +93,8 @@ jobs:
       env:
         ConnectionStrings__DefaultConnection: ${{ secrets.APP_SETTINGS_STRING_CONNECTION_FOR_TESTING }}
         ApiSettings__SecretKey: ${{ secrets.APP_SETTINGS_SECRET_KEY }}
+        DOCKER_CONTAINER: ${{needs.build.outputs.DOCKER_CONTAINER}}
+        NEW_VERSION: ${{needs.build.outputs.NEW_VERSION}}
       run: |
           mkdir -p /apps/dotnet-api
           cp docker-compose.yml /apps/dotnet-api/docker-compose.yml

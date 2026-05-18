@@ -2,9 +2,7 @@ services:
 
   dotnet-api:
     image: ${DOCKER_CONTAINER}:${NEW_VERSION}
-
     container_name: miapi
-
     volumes:
       - ./wwwroot:/app/wwwroot
 
