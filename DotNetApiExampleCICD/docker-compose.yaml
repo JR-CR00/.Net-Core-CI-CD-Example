@@ -1,17 +1,18 @@
 services:
-  sql:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: sqlserver2022
+  db:
+    image: postgres:latest
+    container_name: postgres_db
     ports:
-      - "1433:1433"
+      - "5433:5432"
     environment:
-      ACCEPT_EULA: "1"
-      MSSQL_SA_PASSWORD: "MyStrongPass123"
-      MSSQL_PID: "Developer"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ApiEcommerce
     volumes:
-      - sqlserverdata:/var/opt/mssql
+      - postgres_data:/var/lib/postgresql/data
+
 volumes:
-  sqlserverdata:
+  postgres_data:
 # Comandos útiles:
 # Levantar los contenedores en segundo plano:
 #   docker-compose up -d
