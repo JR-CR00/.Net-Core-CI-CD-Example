@@ -51,9 +51,9 @@ dotnet ef database update --project DotNetApiExampleCICD
 ```bash
 dotnet run --project DotNetApiExampleCICD
 ```
-La API estará disponible en: `http://localhost:5285/swagger`
+La definición de la API estará disponible en: `http://localhost:5285/openapi/v1.json`
 
-## 🧪 Ejecución de Pruebas
+> **Nota**: Este proyecto utiliza **Microsoft.AspNetCore.OpenApi** (nativo de .NET 9/10) para generar el documento de especificación OpenAPI en lugar de Swagger UI. Puedes visualizar este JSON en herramientas como [Scalar](https://scalar.com/), [Postman](https://www.postman.com/) o importarlo en cualquier visor de OpenAPI.
 
 Para validar la integridad del código y asegurar que los cambios no rompan funcionalidades existentes:
 
