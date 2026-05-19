@@ -115,6 +115,9 @@ namespace DotNetApiExampleCICD.Controllers
 
             var product = _mapper.Map<Product>(createProductDto);
 
+            product.ImgUrl = "";
+            product.ImgUrlLocal = "";
+
             // Primero creamos el producto para obtener el ID real de la base de datos
             if (!_productRepository.CreateProduct(product))
             {

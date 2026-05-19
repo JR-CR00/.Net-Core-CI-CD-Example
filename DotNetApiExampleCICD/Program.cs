@@ -136,4 +136,5 @@ if (app.Environment.IsProduction())
 
     DataSeeder.Seed(db);
 }
+
 app.Run();

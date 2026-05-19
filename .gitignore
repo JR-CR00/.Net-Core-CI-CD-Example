@@ -78,3 +78,5 @@ Thumbs.db
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+wwwroot
